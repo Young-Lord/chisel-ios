@@ -1,6 +1,7 @@
 name: CI
 on:
-  push: {}
+  push:
+  workflow_dispatch:
 jobs:
   # ================
   # BUILD AND TEST JOB
@@ -35,3 +36,7 @@ jobs:
                 -ldflags="-s -w -linkmode external -extldflags '-static'" \
                 -v .
           ls -al
+      - uses: actions/upload-artifact@v4
+        with:
+          name: chisel
+          path: .
